@@ -184,8 +184,6 @@ class MusicBeatState extends FlxUIState
 			{
 				FlxG.watch.addQuick("Current Conductor Timing Seg", data.bpm);
 
-				Conductor.crochet = ((60 / data.bpm) * 1000) / PlayState.songMultiplier;
-
 				var step = ((60 / data.bpm) * 1000) / 4;
 				var startInMS = (data.startTime * 1000);
 
@@ -211,6 +209,8 @@ class MusicBeatState extends FlxUIState
 						stepHit();
 					}
 				}
+
+				Conductor.crochet = ((60 / data.bpm) * 1000) / PlayState.songMultiplier;
 			}
 			else
 			{
