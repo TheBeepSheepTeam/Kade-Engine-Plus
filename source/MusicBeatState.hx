@@ -145,6 +145,9 @@ class MusicBeatState extends FlxUIState
 		FlxTransitionableState.skipNextTransOut = false;
 
 		Paths.clearUnusedMemory();
+
+		super.create();
+		(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 	}
 
 	override function update(elapsed:Float)
@@ -240,7 +243,7 @@ class MusicBeatState extends FlxUIState
 			}
 		}
 
-		(cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
+		// (cast(Lib.current.getChildAt(0), Main)).setFPSCap(FlxG.save.data.fpsCap);
 		super.update(elapsed);
 	}
 
