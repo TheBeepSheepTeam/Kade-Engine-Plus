@@ -58,7 +58,7 @@
 	<!-- Defines whether the mp4 videos should be enabled. -->
 	<define name="FEATURE_MP4VIDEOS" unless="32bits"/>
 	<!-- Defines whether the Mods menu will display before launching. -->
-	<define name="FEATURE_MODCORE" if="desktop" />
+	<!--<define name="FEATURE_MODCORE" if="desktop" />-->
 	<!-- Defines if webm videos are enabled. Doesn't work in browser -->
 	<define name="FEATURE_WEBM" if="desktop" />
 	<!-- Defines if hscript are enabled. Dosen't work in browser -->
