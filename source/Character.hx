@@ -109,7 +109,9 @@ class Character extends FlxSprite
 			else if (data.AtlasType == 'TextureAtlas')
 				tex = Paths.getTextureAtlas(data.asset, 'shared');
 			else if (data.AtlasType == 'JsonAtlas')
-				tex = Paths.getJSONAtlas(data.asset, 'shared');
+				tex = Paths.getJsonAtlas(data.asset, 'shared');
+			else if (data.AtlasType == 'XmlAtlas')
+				tex = Paths.getXmlAtlas(data.asset, 'shared');
 			else
 				tex = Paths.getSparrowAtlas(data.asset, 'shared');
 

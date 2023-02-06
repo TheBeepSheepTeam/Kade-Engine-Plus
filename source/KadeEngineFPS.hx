@@ -172,6 +172,13 @@ class KadeEngineFPS extends TextField
 				+ '\nFNF v'
 				+ MainMenuState.gameVer
 				+ (Main.watermarks?'\n$engineName ' + "v" + MainMenuState.kadeEngineVer #if debug + "\nDEBUG MODE" #end : ""));
+	
+			//sure why not?
+			textColor = 0xFFFFFFFF;
+			if (memoryMegas > 3000 || currentFPS <= FlxG.save.data.fpsCap / 2)
+			{
+				textColor = 0xFFFF0000;
+			}
 
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))
 			text += "\ntotalDC: " + Context3DStats.totalDrawCalls();

@@ -61,6 +61,8 @@
 	<define name="FEATURE_MODCORE" if="desktop" />
 	<!-- Defines if webm videos are enabled. Doesn't work in browser -->
 	<define name="FEATURE_WEBM" if="desktop" />
+	<!-- Defines if hscript are enabled. Dosen't work in browser -->
+	<define name="FEATURE_HSCRIPT" if="desktop" />
 
 	<define name="PRELOAD_ALL" unless="web"/>
 	<define name="NO_PRELOAD_ALL" if="web"/>
