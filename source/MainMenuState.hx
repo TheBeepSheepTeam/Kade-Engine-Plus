@@ -42,7 +42,7 @@ class MainMenuState extends MusicBeatState
 
 	public static var gameVer:String = "0.2.8";
 
-	public static var kadeEngineVer:String = "1.8.1" + "\nCustom Build v1.4.2" + nightly;
+	public static var kadeEngineVer:String = "1.8.1" + "\nCustom Build v0.0.1" + nightly;
 
 	public static var buildVer:String = "1.4.2";
 
@@ -201,6 +201,11 @@ class MainMenuState extends MusicBeatState
 					FlxG.sound.play(Paths.sound('scrollMenu'));
 					changeItem(1);
 				}
+			}
+
+			if (FlxG.keys.justPressed.SEVEN)
+			{
+				MusicBeatState.switchState(new editors.CharacterEditor());
 			}
 
 			if (FlxG.keys.justPressed.UP)

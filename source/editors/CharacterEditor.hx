@@ -1,53 +1,54 @@
 package editors;
 
-import flixel.input.gamepad.FlxGamepad;
 import Controls.KeyboardScheme;
+import Controls;
+import flash.text.TextField;
+import flash.text.TextField;
+import flixel.FlxG;
 import flixel.FlxG;
 import flixel.FlxObject;
-import openfl.desktop.ClipboardTransferMode;
-import openfl.desktop.ClipboardFormats;
-import openfl.desktop.Clipboard;
-import flixel.ui.FlxButton;
 import flixel.FlxSprite;
+import flixel.FlxSprite;
+import flixel.FlxSubState;
+import flixel.addons.display.FlxGridOverlay;
 import flixel.addons.ui.FlxInputText;
+import flixel.addons.ui.FlxUIDropDownMenu;
 import flixel.addons.ui.FlxUIInputText;
-import flixel.ui.FlxButton;
+import flixel.addons.ui.FlxUITabMenu;
 import flixel.effects.FlxFlicker;
+import flixel.graphics.FlxGraphic;
 import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.group.FlxGroup.FlxTypedGroup;
+import flixel.input.gamepad.FlxGamepad;
+import flixel.input.keyboard.FlxKey;
+import flixel.math.FlxMath;
+import flixel.text.FlxText;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import flixel.tweens.FlxTween;
+import flixel.ui.FlxButton;
+import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
+import flixel.util.FlxColor;
+import flixel.util.FlxSave;
 import flixel.util.FlxTimer;
+import flixel.util.FlxTimer;
+import haxe.Json;
 import lime.app.Application;
+import lime.utils.Assets;
+import openfl.desktop.Clipboard;
+import openfl.desktop.ClipboardFormats;
+import openfl.desktop.ClipboardTransferMode;
+import sys.io.File;
+
+using StringTools;
+
 #if FEATURE_DISCORD
 import Discord.DiscordClient;
 #end
-import flash.text.TextField;
-import flixel.addons.display.FlxGridOverlay;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
-import lime.utils.Assets;
-import flixel.FlxSubState;
-import flash.text.TextField;
-import flixel.FlxG;
-import flixel.FlxSprite;
-import flixel.util.FlxSave;
-import haxe.Json;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.util.FlxTimer;
-import flixel.input.keyboard.FlxKey;
-import flixel.graphics.FlxGraphic;
-import Controls;
-import sys.io.File;
-import flixel.addons.ui.FlxUIDropDownMenu;
-import flixel.addons.ui.FlxUITabMenu;
-
-using StringTools;
 
 class CharacterEditor extends MusicBeatState
 {
@@ -55,7 +56,7 @@ class CharacterEditor extends MusicBeatState
 	var enabledchar:Bool = false;
 	var characterlisttxt:String = sys.io.File.getContent("assets/data/characterList.txt");
 
-	public static var hmmm:String = sys.io.File.getContent('assets/images/no/novar/a.txt');
+	public static var hmmm:String = sys.io.File.getContent('assets/data/random/a.txt');
 
 	// Strings
 	var characters:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/characterList'));
@@ -226,6 +227,7 @@ class CharacterEditor extends MusicBeatState
 		code = code + "\n" + "   " + hmmm + "asset" + hmmm + ":" + hmmm + eventName.text + hmmm + ",";
 		code = code + "\n" + "   " + hmmm + "barColor" + hmmm + ":" + hmmm + "#000000" + hmmm + ",";
 		code = code + "\n" + "   " + hmmm + "startingAnim" + hmmm + ":" + hmmm + "idle" + hmmm + ",";
+		code = code + "\n" + "      " + hmmm + "flipX" + hmmm + ":" + eventName5.text;
 		code = code + "\n" + "   " + hmmm + "animations" + hmmm + ": [";
 		remove(save);
 		remove(eventName);
@@ -240,7 +242,7 @@ class CharacterEditor extends MusicBeatState
 		bg.active = false;
 		add(bg);
 
-		var tabs2 = [{name: "Character", label: 'Character Maker'},];
+		var tabs2 = [{name: "Character", label: 'Character Editor'},];
 		UI_box2 = new FlxUITabMenu(null, tabs2, true);
 		UI_box2.scrollFactor.set();
 		UI_box2.resize(300, 400);
@@ -250,6 +252,8 @@ class CharacterEditor extends MusicBeatState
 		UI_box2.x += 250;
 		eventNameHmm = new FlxButton(9, 30, "Add Animation", addAnimation);
 		UI_box2.add(eventNameHmm);
+		eventName5 = new FlxUIInputText(150, 30, 80, "flipX(true/false)");
+		UI_box2.add(eventName5);
 		eventNameHmmSave = new FlxButton(99, 30, "Save", saveCharacter);
 		UI_box2.add(eventNameHmmSave);
 		modName = new FlxUIInputText(189, 30, 80, "Mod Name");
@@ -272,8 +276,6 @@ class CharacterEditor extends MusicBeatState
 		add(eventName3);
 		eventName4 = new FlxUIInputText(190, 273, 80, "Offset Y");
 		add(eventName4);
-		eventName5 = new FlxUIInputText(190, 323, 80, "flipX(true/false)");
-		add(eventName5);
 		eventNameHmm2 = new FlxButton(190, 363, "Apply", addAnimationCode);
 		add(eventNameHmm2);
 	}
@@ -283,7 +285,6 @@ class CharacterEditor extends MusicBeatState
 		code = code + "\n" + "{" + "\n" + "      " + hmmm + "name" + hmmm + ":" + hmmm + eventName.text + hmmm + ",";
 		code = code + "\n" + "      " + hmmm + "prefix" + hmmm + ":" + hmmm + eventName2.text + hmmm + ",";
 		code = code + "\n" + "      " + hmmm + "offsets" + hmmm + ":" + "[" + eventName3.text + "," + eventName4.text + "],";
-		code = code + "\n" + "      " + hmmm + "flipX" + hmmm + ":" + eventName5.text;
 		code = code + "\n" + "    },";
 	}
 
@@ -291,7 +292,7 @@ class CharacterEditor extends MusicBeatState
 	{
 		code = code + "\n" + "  ]" + "\n" + "}";
 		code.replace(",E", "hmm");
-		sys.io.File.saveContent("mods/" + modName.text + "/custom/custom_characters/" + charactername + ".json", code);
+		sys.io.File.saveContent("assets/data/characters/" + charactername + ".json", code);
 		sys.io.File.saveContent("assets/data/characterList.txt", characterlisttxt + "\n" + charactername);
 	}
 }
