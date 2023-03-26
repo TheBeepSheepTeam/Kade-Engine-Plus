@@ -35,7 +35,8 @@
 
 	<set name="BUILD_DIR" value="export/debug" if="debug" />
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
-	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
+	<set name="BUILD_DIR" value="export/release-32bits" if="32bits" unless="32bits debug"/>
+	<set name="BUILD_DIR" value="export/debug-32bits" if="32bits debug" />
 
 	<source name="source" />
 
@@ -153,7 +154,7 @@
 	<!-- ______________________________ Haxedefines _____________________________ -->
 
 	<define name="hscriptPos" />
-	<haxeflag name="-dce no" />
+	<haxeflag name="--dce full" />
 
 	<!--Enable the Flixel core recording system-->
 	<!--<haxedef name="FLX_RECORD" />-->

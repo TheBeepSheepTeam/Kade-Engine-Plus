@@ -48,8 +48,8 @@ import Discord.DiscordClient;
 import LuaClass;
 #end
 #if (FEATURE_MP4VIDEOS && !html5)
-import VideoHandler;
-import VideoSprite;
+import hxcodec.VideoHandler;
+import hxcodec.VideoSprite;
 #end
 #if FEATURE_STEPMANIA
 import smTools.SMFile;

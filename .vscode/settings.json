@@ -5,17 +5,31 @@
   },
   "lime.targetConfigurations": [
     {
-      "label": "Build Windows (Debug)",
+      "label": "Build Windows x64 (Debug)",
       "target": "windows",
       "args": [
         "-debug"
       ]
     },
     {
-      "label": "Build Windows (Release)",
+      "label": "Build Windows x64 (Release)",
       "target": "windows",
       "args": [
         "-release"
+      ]
+    },
+    {
+      "label": "Build Windows x32 (Debug)",
+      "target": "windows",
+      "args": [
+        "-32 -debug -D 32bits -D HXCPP_M32"
+      ]
+    },
+    {
+      "label": "Build Windows x32 (Release)",
+      "target": "windows",
+      "args": [
+        "-32 -release -D 32bits -D HXCPP_M32"
       ]
     },
     {

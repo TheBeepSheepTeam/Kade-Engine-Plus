@@ -28,7 +28,7 @@ jobs:
           mkdir "%HAXELIB_ROOT%"
           haxelib setup "%HAXELIB_ROOT%"
           haxelib install hxcpp-debug-server 1.2.4 
-          haxelib install lime 7.9.0
+          haxelib install lime 
           haxelib install openfl
           haxelib install flixel
           haxelib run lime setup flixel
@@ -39,7 +39,7 @@ jobs:
           haxelib install hscript
           haxelib install flixel-addons
           haxelib git faxe https://github.com/uhrobots/faxe
-          haxelib install polymod
+          haxelib git polymod https://github.com/BoloVEVO/polymod.git
           haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
           haxelib git linc_luajit https://github.com/MasterEric/linc_luajit.git
           haxelib git hxvm-luajit https://github.com/nebulazorua/hxvm-luajit.git
